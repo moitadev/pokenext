@@ -1,4 +1,4 @@
-import '../style/style.scss';
+import '@/style/style.scss';
 import Navbar from '@/components/Navbar/navbar';
 import Footer from '@/components/Footer/footer';
 import type { Metadata } from 'next';

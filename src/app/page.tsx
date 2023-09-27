@@ -1,11 +1,16 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+interface Pokeman {
+  id: number;
+  name: string;
+}
+
 async function getPokemon() {
   const res = await fetch('https://pokeapi.co/api/v2/pokemon?limit=151');
 
   if (!res.ok) {
-    throw new Error('Failed to fetch data');
+    throw new Error('Failed to fetch pokemons');
   }
 
   return res.json();
@@ -15,7 +20,7 @@ async function getColors() {
   const res = await fetch('http://localhost:8080/api/pokemons/');
 
   if (!res.ok) {
-    throw new Error('Failed to fetch data');
+    throw new Error('Failed to fetch colors');
   }
 
   return res.json();
@@ -30,8 +35,8 @@ export default async function Home() {
       <div className="row">
         <ul className="pokemon-list">
           {pokemons.map((pokemon: any, index: number) => (
-            <Link href="/" key={index} className="pokemon-thumb">
-              <li style={{ backgroundColor: colors[index].rgb }}>
+            <Link href={`/pokemon/${(index + 1)}`} key={index} className="pokemon-thumb" style={{ backgroundColor: colors[index].rgb }}>
+              <li>
                 <Image
                   src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${('00' + (index + 1)).slice(-3)}.png`}
                   alt={pokemon.name}
