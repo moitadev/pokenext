@@ -17,7 +17,7 @@ async function getPokemon() {
 }
 
 async function getColors() {
-  const res = await fetch('http://localhost:8080/api/pokemons/');
+  const res = await fetch('http://localhost:3000/api/pokecolors');
 
   if (!res.ok) {
     throw new Error('Failed to fetch colors');
@@ -34,7 +34,7 @@ export default async function Home() {
     <div className="container">
       <div className="row">
         <ul className="pokemon-list">
-          {pokemons.map((pokemon: any, index: number) => (
+          {pokemons.map((pokemon: Pokecolor, index: number) => (
             <Link href={`/pokemon/${(index + 1)}`} key={index} className="pokemon-thumb" style={{ backgroundColor: colors[index].rgb }}>
               <li>
                 <Image
@@ -42,6 +42,7 @@ export default async function Home() {
                   alt={pokemon.name}
                   width={100}
                   height={100}
+                  loading='lazy'
                 />
                 <h4>{pokemon.name}</h4>
                 <small>{('00' + (index + 1)).slice(-3)}</small>
