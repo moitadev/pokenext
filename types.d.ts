@@ -1,3 +1,5 @@
+//todo: procurar informações sobre o uso de Type e interface
+
 interface Pokemon {
   id: number;
   name: string;
@@ -9,32 +11,36 @@ interface Pokemon {
   abilities: PokemonAbilities[];
 };
 
-type PokemonAbilities = {
-  ability: ResourceBaseInfo;
+interface PokemonAbilities {
+  ability: BaseEntry;
   is_hidden: boolean;
   slot: number;
 }
 
-type PokemonStats = {
-  stat: ResourceBaseInfo;
+interface PokemonStats {
+  stat: BaseEntry;
   base_stat: number;
   effort: number;
 }
 
-type PokemonTypes = {
-  type: ResourceBaseInfo;
+interface PokemonTypes {
+  type: BaseEntry;
   slot: number;
 }
 
-type ResourceBaseInfo = {
+interface BaseEntry {
   name: string;
   url: string;
 }
 
-type Pokecolor = {
+interface Pokecolor {
   colorIndex: number;
   id: number;
   name: string;
   color: string;
   rgb: string;
+}
+
+interface Props {
+  pokemon: Pokemon;
 }

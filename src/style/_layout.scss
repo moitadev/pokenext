@@ -78,27 +78,25 @@
       padding: 80px 10px;
       border-radius: 15px;
     }
-    .scroller {
+    .details-list {
       width: 100%;
-      position: relative;
-      .details-list {
-        display: flex;
-        margin: 0;
-        padding: 0;
-        list-style: none;
-        justify-content: space-between;
-        flex-wrap: nowrap;
-        //mask: linear-gradient(90deg, white 80%, transparent);
-        .details-item {
-          font-weight: 600;
+      display: flex;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      justify-content: space-between;
+      flex-wrap: nowrap;
+      //mask: linear-gradient(90deg, white 80%, transparent);
+      .details-item {
+        text-transform: capitalize;
+        font-weight: 600;
+        transition: all $animation-seconds;
+        cursor: pointer;
+        &:hover,
+        &:focus,
+        &:active {
+          color: $secondary;
           transition: all $animation-seconds;
-          cursor: pointer;
-          &:hover,
-          &:focus,
-          &:active {
-            color: $secondary;
-            transition: all $animation-seconds;
-          }
         }
       }
     }
