@@ -2,7 +2,7 @@
 
 import Navbar from '@/components/Navbar/navbar';
 import PokemonsCard from '@/components/PokemonsCard/pokemonscard';
-//import getColors from '@/components/getColors/getColors';
+import getColors from '@/components/getColors/getColors';
 import { useEffect, useState } from 'react';
 
 interface Pokeman {
@@ -13,7 +13,7 @@ interface Pokeman {
 
 export default function Home() {
   const [pokemons, setPokemons] = useState<Pokeman[]>();
-  //const [colors, setColors] = useState<Pokecolor[]>();
+  const [colors, setColors] = useState<Pokecolor[]>();
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState<Pokeman[]>([]);
@@ -22,13 +22,13 @@ export default function Home() {
     async function fetchPokemons() {
       const res = await fetch('https://pokeapi.co/api/v2/pokemon?limit=151');
       const data = await res.json();
-      //const resColors = await getColors();
+      const resColors = await getColors();
 
       if (!res.ok) {
         throw new Error('Failed to fetch Pokemons data');
       }
 
-      //setColors(resColors);
+      setColors(resColors);
       setPokemons(data.results);
       setLoading(false);
       setSearchResults(
