@@ -1,7 +1,51 @@
-nav{
-    padding: 20px 0;
-    .logo{
-        font-weight: 800;
-        margin: 0;
+nav, .container {
+  padding: 20px 0px;
+  flex-direction: column;
+  gap: 15px;
+  .row {
+    display: flex;
+    flex-direction: column;
+    .search-bar {
+      display: flex;
+      gap: 20px;
+      width: 100%;
+      input{
+        width: 100%;
+        border: 0;
+        border-radius: 5px;
+        background-color: #ebf3f5;
+        padding: 0 20px;
+      }
+      button{
+        background-color: #5d5e7d;
+        border: 0;
+        border-radius: 5px;
+        padding: 8px;
+        transition: all $animation-seconds;
+        svg{
+            path{
+                fill: #fff;
+            }
+        }
+        &:hover{
+            cursor: pointer;
+            background-color: $variant;
+            transition: all $animation-seconds;
+        }
+      }
     }
+  }
+  .logo {
+    font-weight: 800;
+    line-height: normal;
+    margin: 0;
+  }
+  p{
+    font-size: 14px;
+    line-height: normal;
+  }
+}
+
+.p-0{
+  padding: 0!important;
 }
