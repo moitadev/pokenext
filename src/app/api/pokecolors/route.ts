@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-const DATA_SOURCE_URL = "http://localhost:3000/pokecolors.json"
+const DATA_SOURCE_URL = "https://pokenext-b75qriaj5-moooita.vercel.app/pokecolors.json"
 
 export async function GET() {
     const res = await fetch(DATA_SOURCE_URL)
