@@ -1,51 +1,21 @@
 'use client';
 
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import PokemonAbilities from '@/components/PokemonAbilites/pokemonabilities';
 import PokemonTypes from '@/components/PokemonTypes/pokemontypes';
 import PokemonDetails from '@/components/PokemonDetails/pokemondetails';
 import PokemonStats from '@/components/PokemonStats/pokemonstats';
 import Tab from '@/components/Tab/tab';
-
-async function getColors() {
-  const res = await fetch('http://localhost:3000/api/pokecolors');
-
-  if (!res.ok) {
-    throw new Error('Failed to fetch colors');
-  }
-
-  return res.json();
-}
+import { usePokemonData } from '@/components/usePokemonData/usepokemondata';
 
 export default function Page({ params }: { params: { id: number } }) {
-  const [pokemon, setPokemon] = useState<Pokemon>();
-  const [colors, setColors] = useState<Pokecolor[]>();
-  const [loading, setLoading] = useState(true);
-
-  const [selectedTab, setselectedTab] = useState('abilities');
+  const { pokemon, colors, loading } = usePokemonData(params.id);
+  const [selectedTab, setSelectedTab] = useState('abilities');
 
   const handleTabClick = (detail: string) => {
-    setselectedTab(detail);
+    setSelectedTab(detail);
   };
-
-  useEffect(() => {
-    async function fetchPokemon() {
-      const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${params.id}`);
-      const pokemonData = await res.json();
-      const resColors = await getColors();
-
-      if (!res.ok) {
-        throw new Error('Failed to fetch Pokemon data');
-      }
-
-      setColors(resColors);
-      setPokemon(pokemonData);
-      setLoading(false);
-    }
-
-    fetchPokemon();
-  }, [params.id]);
 
   return (
     <div className="container-sm">
@@ -103,10 +73,14 @@ export default function Page({ params }: { params: { id: number } }) {
             </div>
             <div className="row">
               <div className="detail-box">
-                {selectedTab === "abilities" && <PokemonAbilities pokemon={pokemon} />}
-                {selectedTab === "types" && <PokemonTypes pokemon={pokemon} />}
-                {selectedTab === "details" && <PokemonDetails pokemon={pokemon} />}
-                {selectedTab === "stats" && <PokemonStats pokemon={pokemon} />}
+                {selectedTab === 'abilities' && (
+                  <PokemonAbilities pokemon={pokemon} />
+                )}
+                {selectedTab === 'types' && <PokemonTypes pokemon={pokemon} />}
+                {selectedTab === 'details' && (
+                  <PokemonDetails pokemon={pokemon} />
+                )}
+                {selectedTab === 'stats' && <PokemonStats pokemon={pokemon} />}
               </div>
             </div>
           </>
