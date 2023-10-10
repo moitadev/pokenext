@@ -1,7 +1,18 @@
 import '@/style/style.scss';
 import Link from 'next/link';
+import SearchBar from '../SearchBar/searchbar';
 
-export default function Navbar() {
+interface SearchBarProps {
+  searchPokemon: () => void;
+  searchTerm: string;
+  setSearchTerm: (term: string) => void;
+}
+
+const Navbar: React.FC<SearchBarProps> = ({
+  searchPokemon,
+  searchTerm,
+  setSearchTerm,
+}) => {
   return (
     <nav className="container">
       <div className="row">
@@ -14,6 +25,13 @@ export default function Navbar() {
           Search for a Pokémon by name or using its National Pokédex number.
         </p>
       </div>
+      <SearchBar
+        searchPokemon={searchPokemon}
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+      />
     </nav>
   );
-}
+};
+
+export default Navbar;
