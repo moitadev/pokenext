@@ -78,21 +78,15 @@ export default function Home() {
               colors &&
               searchResults && (
                 <>
-                  {searchResults.length > 0
-                    ? searchResults.map((pokemon) => (
-                        <PokemonsCard
-                          key={pokemon.id}
-                          pokemon={pokemon}
-                          colors={colors}
-                        />
+                  {searchResults.length > 0 ? searchResults.map((pokemon) => (
+                        <PokemonsCard key={pokemon.id} pokemon={pokemon} colors={colors}/>
                       ))
-                    : pokemons.map((pokemon) => (
-                        <PokemonsCard
-                          key={pokemon.id}
-                          pokemon={pokemon}
-                          colors={colors}
-                        />
-                      ))}
+                    : (
+                      <small className="loading">
+          Oh no! The wild pokémon that you were looking for fled.
+        </small>
+                    )
+                  }
                 </>
               )
             )}

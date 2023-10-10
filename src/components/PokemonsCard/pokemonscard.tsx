@@ -10,7 +10,7 @@ interface PokemonLinkProps {
   colors: Pokecolor[];
 }
 
-export default function PokemonsCard({ pokemon, colors }:PokemonLinkProps) {
+export default function PokemonsCard({ pokemon, colors }: PokemonLinkProps) {
   return (
     <Link
       href={`/pokemon/${pokemon.id}`}
