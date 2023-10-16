@@ -7,7 +7,9 @@ import PokemonTypes from '@/components/PokemonTypes/pokemontypes';
 import PokemonDetails from '@/components/PokemonDetails/pokemondetails';
 import PokemonStats from '@/components/PokemonStats/pokemonstats';
 import Tab from '@/components/Tab/tab';
+import Link from 'next/link';
 import { usePokemonData } from '@/components/usePokemonData/usepokemondata';
+import BackArrow from '@/components/BackArrow/backarrow';
 
 export default function Page({ params }: { params: { id: number } }) {
   const { pokemon, colors, loading } = usePokemonData(params.id);
@@ -26,6 +28,7 @@ export default function Page({ params }: { params: { id: number } }) {
         colors && (
           <>
             <div className="row">
+              <Link href="/"><BackArrow /></Link>
               <div className="poke-title">
                 <h2>{pokemon.name}</h2>
                 <small>{('00' + pokemon.id).slice(-3)}</small>
