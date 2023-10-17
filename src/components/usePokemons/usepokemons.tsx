@@ -43,15 +43,21 @@ export default function usePokemons() {
     if (!pokemons) {
       return;
     }
-    const data = pokemons.filter((pokemon) =>
-      pokemon.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+  
+    const searchTermLower = searchTerm.toLowerCase();
+    const data = pokemons.filter((pokemon) => {
+      const nameLower = pokemon.name.toLowerCase();
+      const parts = pokemon.url.split('/');
+      const id = parseInt(parts[parts.length - 2], 10).toString();
+      return nameLower.includes(searchTermLower) || (id && id.includes(searchTermLower));
+    });
+  
     const filteredPokemons: Pokeman[] = data.map((pokemonInfo) => {
       const parts = pokemonInfo.url.split('/');
       const id = parseInt(parts[parts.length - 2], 10);
       return { ...pokemonInfo, id };
     });
-
+  
     setSearchResults(filteredPokemons);
   };
 
