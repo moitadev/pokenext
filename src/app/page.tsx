@@ -5,7 +5,6 @@ import PokemonsCard from '@/components/PokemonsCard/pokemonscard';
 import usePokemons from '@/components/usePokemons/usepokemons';
 
 export default function Home() {
-
   const { pokemons, colors, loading, searchResults, searchPokemon, searchTerm, setSearchTerm } = usePokemons();
 
   return (

@@ -28,10 +28,14 @@ export default function Page({ params }: { params: { id: number } }) {
         colors && (
           <>
             <div className="row">
-              <Link href="/"><BackArrow /></Link>
-              <div className="poke-title">
-                <h2>{pokemon.name}</h2>
-                <small>{('00' + pokemon.id).slice(-3)}</small>
+              <div className="detail-view-header">
+                <div className="back-arrow">
+                  <Link href="/"><BackArrow /></Link>
+                </div>
+                <div className="poke-title">
+                  <h2>{pokemon.name}</h2>
+                  <small>{('00' + pokemon.id).slice(-3)}</small>
+                </div>
               </div>
             </div>
             <div className="row">
